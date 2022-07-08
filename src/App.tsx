@@ -1,19 +1,27 @@
 import {
+  Pagination,
   SearchBar,
-  StandardCard,
   VerticalResults,
+  StandardFacets,
 } from "@yext/answers-react-components";
-import { useState } from "react";
-import "./App.css";
+import { BeverageCard } from "./components/cards/BeverageCard";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="flex justify-center px-4 py-6">
       <div className="w-full max-w-5xl">
         <SearchBar />
-        <VerticalResults CardComponent={StandardCard} />
+        <div className="flex">
+          <StandardFacets />
+          <VerticalResults
+            customCssClasses={{
+              results: "grid md:grid-cols-2 lg:grid-cols-4 gap-4 grid-cols-1",
+            }}
+            CardComponent={BeverageCard}
+            allowPagination={false}
+          />
+        </div>
+        <Pagination />
       </div>
     </div>
   );
